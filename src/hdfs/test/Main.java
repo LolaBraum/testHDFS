@@ -12,13 +12,13 @@ import java.io.*;
 public class Main {
 
 
-    public static void testNewFolder(String IP, String port) throws IOException {
+    public static void testNewFolder() throws IOException {
 
         Configuration conf = new Configuration();
 
         conf.set("fs.hdfs.impl", org.apache.hadoop.hdfs.DistributedFileSystem.class.getName());
         conf.set("fs.file.impl", org.apache.hadoop.fs.LocalFileSystem.class.getName());
-        conf.set("fs.default.name", "hdfs://192.168.1.35:8020/user/cloudera");
+        conf.set("fs.default.name", "hdfs://localhost:8020/user/cloudera");
 
         FileSystem fileSystem = FileSystem.get(conf);
 
@@ -33,12 +33,12 @@ public class Main {
         fileSystem.delete(myDirPath, true);
     }
 
-    public static void testNewFile(String IP, String port) throws IOException {
+    public static void testNewFile() throws IOException {
         Configuration conf = new Configuration();
 
         conf.set("fs.hdfs.impl", org.apache.hadoop.hdfs.DistributedFileSystem.class.getName());
         conf.set("fs.file.impl", org.apache.hadoop.fs.LocalFileSystem.class.getName());
-        conf.set("fs.default.name", "hdfs://192.168.1.35:8020/user/cloudera");
+        conf.set("fs.default.name", "hdfs://localhost:8020/user/cloudera");
 
         FileSystem fileSystem = FileSystem.get(conf);
 
@@ -52,12 +52,12 @@ public class Main {
         fileSystem.delete(myNewFile, true);
     }
 
-    public static void testEditNewFile(String IP, String port) throws IOException {
+    public static void testEditNewFile() throws IOException {
         Configuration conf = new Configuration();
 
         conf.set("fs.hdfs.impl", org.apache.hadoop.hdfs.DistributedFileSystem.class.getName());
         conf.set("fs.file.impl", org.apache.hadoop.fs.LocalFileSystem.class.getName());
-        conf.set("fs.default.name", "hdfs://192.168.1.35:8020/user/cloudera");
+        conf.set("fs.default.name", "hdfs://localhost:8020/user/cloudera");
         FileSystem fileSystem = FileSystem.get(conf);
 
         Path myNewFile2 = new Path("/user/cloudera/my_dir/myNewFile2.txt");
@@ -91,12 +91,12 @@ public class Main {
 
 
     }
-    public static void testCpyFile(String IP, String port) throws IOException {
+    public static void testCopyFile() throws IOException {
         Configuration conf = new Configuration();
 
         conf.set("fs.hdfs.impl", org.apache.hadoop.hdfs.DistributedFileSystem.class.getName());
         conf.set("fs.file.impl", org.apache.hadoop.fs.LocalFileSystem.class.getName());
-        conf.set("fs.default.name", "hdfs://192.168.1.35:8020/user/cloudera");
+        conf.set("fs.default.name", "hdfs://localhost:8020/user/cloudera");
 
         FileSystem fileSystem = FileSystem.get(conf);
         // создаем 2 папки
@@ -144,17 +144,19 @@ public class Main {
 
     }
     public static void main(String[] args) throws IOException {
-        String IP;
-        String port;
-
 
         System.setProperty("HADOOP_USER_NAME", "hdfs");
-        //testEditNewFile();
+
         // create folder
         //testNewFolder();
-        //create new file
-        //testCpyFile();
-        // edit file
+
+
+        // create new file
+        //testNewFile();
+
+        // copy file
+        //testCopyFile();
+
 
     }
 }
